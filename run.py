@@ -6,7 +6,8 @@ from os.path import dirname, realpath
 
 from bridge import app
 
+reload(sys)
+sys.setdefaultencoding('utf8') 
 sys.path.append(app.root_path)
 
-print app.url_map
 app.run(host='localhost', port=80, debug=True)

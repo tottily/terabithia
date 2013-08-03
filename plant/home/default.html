@@ -1,8 +1,12 @@
-<!doctype html>
-<title>home</title>
-
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/sunflower.css') }}">
-
-<div>
-首页
-</div>
+{% extends "base.html" %}
+{% block body %}
+<ul>
+{% for category, url_ids in default_urls %}
+    <li>{{ category }}
+        {% for uid in url_ids %}
+        <a target="_blank" href="{{ urls.get(uid).get('url') }}">{{ urls.get(uid).get('name') }}</a>
+        {% endfor %}
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}

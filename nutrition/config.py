@@ -14,3 +14,4 @@ DB = {}
 MC = {}
 
 TERABITHIA_DOMAIN = 'http://www.dougun.com/'
+TERABITHIA_NAME = '豆棍'
