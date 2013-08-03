@@ -4,8 +4,9 @@ import sys
 
 from os.path import dirname, realpath
 
-ROOT_PATH = '%s/terabithia' % dirname(realpath(__file__))
-sys.path.append(ROOT_PATH)
+from bridge import app
 
-from terabithia import app
+sys.path.append(app.root_path)
+
+print app.url_map
 app.run(host='localhost', port=80, debug=True)

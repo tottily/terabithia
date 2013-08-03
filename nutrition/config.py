@@ -4,9 +4,13 @@ from os.path import dirname
 
 TERABITHIA_ROOT_PATH =  dirname(dirname(__file__))
 
-print 'rott', TERABITHIA_ROOT_PATH
-DB = {}
+MODEL_DIR = 'earth'
+VIEW_DIR = 'plant'
+CONTROLLER = 'river'
 
+TEMPLATE_PATH = '%s/%s' % (TERABITHIA_ROOT_PATH, VIEW_DIR)
+
+DB = {}
 MC = {}
 
 TERABITHIA_DOMAIN = 'http://www.dougun.com/'
