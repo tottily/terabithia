@@ -4,8 +4,10 @@ import os
 
 from flask import Flask, send_from_directory
 from river import home, admin
+from nutrition.config import TERABITHIA_GLOBALS
 
 app = Flask('Terabithia', template_folder="plant", static_folder='flower')
+app.jinja_env.globals.update(TERABITHIA_GLOBALS)
 
 rivers = {
     home: '',
