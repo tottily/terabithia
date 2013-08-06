@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 
+from sqlalchemy import Column, Integer, String
+
+from nutrition.database import Base
+
 DEFAULT_URLS = (
     ('社区', [1, 2, 3]),
     ('新闻', [4, 5, 6]),
@@ -17,4 +21,9 @@ URLS = {
     8: {'name': '', 'url': ''},
 }
 
+class Url(Base):
 
+    __tablename__ = 'url'
+
+    id = Column(Integer, primary_key=True)
+    name =  Column(String(50))
