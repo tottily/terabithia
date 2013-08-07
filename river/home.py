@@ -4,7 +4,7 @@ from flask import Blueprint, render_template, abort
 from jinja2 import TemplateNotFound
 
 from nutrition.config import TERABITHIA_NAME
-from earth.url import DEFAULT_URLS, URLS
+from earth.site import DEFAULT_URLS, URLS
 
 home = Blueprint('home', __name__)
 
