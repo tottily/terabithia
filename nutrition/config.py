@@ -10,8 +10,15 @@ CONTROLLER = 'river'
 
 TEMPLATE_PATH = '%s/%s' % (TERABITHIA_ROOT_PATH, VIEW_DIR)
 
-DB = {}
-MC = {}
+DB_CONFIG = {
+    'HOST': 'localhost',
+    'PORT': '3306',
+    'USER': 'root',
+    'PASSWORD': '',
+    'DB_NAME': 'test',
+}
+
+MC_CONFIG = {}
 
 TERABITHIA_DOMAIN = 'http://www.dougun.com/'
 TERABITHIA_NAME = '豆棍'

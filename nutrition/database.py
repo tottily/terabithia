@@ -4,8 +4,10 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
+from nutrition.config import DB_CONFIG
+
 db_engine = create_engine(
-    'mysql://root:@localhost/test',
+    'mysql://%s:%s@%s:%s/%s' % (DB_CONFIG['USER'], DB_CONFIG['PASSWORD'], DB_CONFIG['HOST'], DB_CONFIG['PORT'], DB_CONFIG['DB_NAME']),
     isolation_level="READ COMMITTED"
 )
 

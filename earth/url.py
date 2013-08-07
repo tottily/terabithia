@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy.sql import text
 
 from nutrition.database import Base
 
@@ -26,4 +27,5 @@ class Url(Base):
     __tablename__ = 'url'
 
     id = Column(Integer, primary_key=True)
-    name =  Column(String(50))
+    name = Column(String(50), nullable=False)
+    refresh_time = Column(DateTime, server_default=text('NOW()'))
