@@ -19,5 +19,5 @@ Base = declarative_base()
 Base.query = talk.query_property()
 
 def init_db():
-    from earth.site import Site
+    from earth.url import *
     Base.metadata.create_all(bind=db_engine)
