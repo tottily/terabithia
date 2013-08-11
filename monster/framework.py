@@ -6,6 +6,9 @@ import unittest
 
 from os.path import dirname, realpath
 
+reload(sys)
+sys.setdefaultencoding('utf8')
+
 os.environ['TEST_MODE'] = '1'
 
 root_path = dirname(dirname(realpath(__file__)))

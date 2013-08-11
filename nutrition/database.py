@@ -3,6 +3,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.exc import IntegrityError
 
 from nutrition.config import DB_CONFIG
 
@@ -45,7 +46,9 @@ class T(Base):
             setattr(self, k, v)
 
     def __repr__(self):
-        return '%r' % (self.__class__)
+        if hasattr(self, 'id'):
+            return '<%r id=%s>' % (self.__class__, self.id)
+        return '<%r>' % (self.__class__)
 
     def delete(self):
         talk.delete(self)
@@ -68,6 +71,7 @@ class T(Base):
             talk.refresh(obj)
             return obj
         except IntegrityError:
+            talk.rollback()
             return None
 
     @classmethod

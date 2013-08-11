@@ -20,3 +20,7 @@ class Tag(T):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(50), nullable=False)
+
+    @classmethod
+    def get_by_name(cls, name):
+        return cls.query.filter(cls.name==name).first()
