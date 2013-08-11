@@ -23,6 +23,12 @@ class Url(T):
     comment = Column(String(50))
     refresh_time = Column(DateTime, server_default=text('NOW()'))
 
+    @classmethod
+    def get_by_category_id(cls, cat_id, limit=5):
+        relations = UrlCategoryRelation.query.filter(UrlCategoryRelation.category_id == cat_id).limit(limit)
+        ids = [relation.url_id for relation in relations]
+        return cls.gets(ids)
+
 class UrlCategoryRelation(T):
 
     __tablename__ = 'relation_url_category'

@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block body %}
 <ul>
-{% for category, url_ids in default_urls %}
-    <li>{{ category }}
-        {% for uid in url_ids %}
-        <a target="_blank" href="{{ urls.get(uid).get('url') }}">{{ urls.get(uid).get('name') }}</a>
+{% for category, urls in rec_urls %}
+    <li>{{ category.name }}
+        {% for url in urls %}
+        <a target="_blank" href="{{ url.url }}">{{ url.name }}</a>
         {% endfor %}
     </li>
 {% endfor %}

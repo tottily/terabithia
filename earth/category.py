@@ -9,7 +9,7 @@ from sqlalchemy.sql import text
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import relationship
 
-from nutrition.database import T
+from nutrition.database import T, talk
 
 class Category(T):
 
@@ -18,3 +18,14 @@ class Category(T):
     id = Column(Integer, primary_key=True)
     pid = Column(Integer, index=True)
     name = Column(String(50), nullable=False)
+
+    @classmethod
+    def get_by_name(cls, name):
+        return cls.query.filter(Category.name == name).first()
+        #cid = cls.get_id_by_name(name)
+        #return cls.get(cid)
+
+    @classmethod
+    def get_id_by_name(cls, name):
+        pass
+
