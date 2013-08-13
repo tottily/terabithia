@@ -3,7 +3,6 @@ Terabithia
 ==
 
 pip install Flask
-pip install MySQLdb
 pip install SQLAlchemy
 pip install mysql-python
 

@@ -15,7 +15,8 @@ from nutrition.database import establish_database
 establish_database(force=True)
 
 from earth.category import Category
-from earth.url import Url, UrlCategoryRelation
+from earth.url import Url
+from earth.relation_url_category import UrlCategoryRelation
 
 CATEGORIES = {}
 URLS = []

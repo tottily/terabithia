@@ -24,6 +24,9 @@ class TestCase(unittest.TestCase):
     def tearDown(self):
         destroy_database()
 
+    def test(self):
+        pass
+
 if __name__ == '__main__':
     unittest.main()
 

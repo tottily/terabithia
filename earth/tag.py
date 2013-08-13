@@ -19,7 +19,7 @@ class Tag(T):
     )
 
     id = Column(Integer, primary_key=True)
-    name = Column(String(50), nullable=False)
+    name = Column(String(50), nullable=False, index=True)
 
     @classmethod
     def get_by_name(cls, name):

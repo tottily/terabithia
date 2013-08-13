@@ -19,36 +19,24 @@ class Url(T):
     name = Column(String(50), nullable=False)
     url = Column(String(2048), nullable=False)
     md5 = Column(String(32), nullable=False, unique=True)
-    total = Column(Integer, index=True)
     comment = Column(String(50))
     refresh_time = Column(DateTime, server_default=text('NOW()'))
 
+    def update(self):
+        md5 = hashlib.md5(self.url).hexdigest()
+        if md5 != self.md5:
+            self.md5 = md5
+        self.refresh_time = datetime.now()
+        return super(Url, self).update()
+
     @classmethod
-    def get_by_category_id(cls, cat_id, limit=5):
-        relations = UrlCategoryRelation.query.filter(UrlCategoryRelation.category_id == cat_id).limit(limit)
-        ids = [relation.url_id for relation in relations]
-        return cls.gets(ids)
+    def add(cls, **kwargs):
+        url = kwargs.get('url')
+        if not url: return None
+        kwargs['md5'] = hashlib.md5(url).hexdigest()
+        return super(Url, cls).add(**kwargs)
 
-class UrlCategoryRelation(T):
-
-    __tablename__ = 'relation_url_category'
-    __table_args__ = (
-        UniqueConstraint('url_id', 'category_id', name='uix_url_category'),
-    )
-
-    id = Column('id', Integer, primary_key=True)
-    url_id = Column('url_id', Integer)
-    category_id = Column('category_id', Integer)
-
-class UserUrlTagRelation(T):
-
-    __tablename__ = 'relation_user_url_tag'
-    __table_args__ = (
-        UniqueConstraint('user_id', 'tag_id', 'url_id', name='uix_url_tag_user'),
-    )
-
-    id = Column('id', Integer, primary_key=True)
-    user_id = Column('user_id', Integer)
-    tag_id = Column('tag_id', Integer, index=True)
-    url_id = Column('url_id', Integer, index=True)
-
+    @classmethod
+    def get_by_url(cls, url):
+        md5 = hashlib.md5(url).hexdigest()
+        return cls.query.filter(cls.md5 == md5).first()

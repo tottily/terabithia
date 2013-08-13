@@ -20,20 +20,22 @@ talk = scoped_session(_db_session)
 Base = declarative_base()
 Base.query = talk.query_property()
 
-def establish_database(force=False):
-    if force:
-        destroy_database()
-    from earth.url import Url, UrlCategoryRelation, UserUrlTagRelation
+def import_db_models():
+    from earth.url import Url
     from earth.user import User
     from earth.tag import Tag
     from earth.category import Category
+    from earth.relation_url_category import UrlCategoryRelation
+    from earth.relation_url_tag import UserUrlTagRelation
+
+def establish_database(force=False):
+    import_db_models()
+    if force:
+        destroy_database()
     Base.metadata.create_all(bind=DB_ENGINE)
 
 def destroy_database():
-    from earth.url import Url, UrlCategoryRelation, UserUrlTagRelation
-    from earth.user import User
-    from earth.tag import Tag
-    from earth.category import Category
+    import_db_models()
     talk.remove()
     Base.metadata.drop_all(bind=DB_ENGINE)
 
@@ -49,6 +51,10 @@ class T(Base):
         if hasattr(self, 'id'):
             return '<%r id=%s>' % (self.__class__, self.id)
         return '<%r>' % (self.__class__)
+
+    def echo(self):
+        import inspect
+        print inspect.getmembers(self)
 
     def delete(self):
         talk.delete(self)
