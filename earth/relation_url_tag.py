@@ -19,7 +19,9 @@ class UserUrlTagRelation(T):
     )
 
     id = Column('id', Integer, primary_key=True)
-    user_id = Column('user_id', Integer)
-    tag_id = Column('tag_id', Integer, index=True)
-    url_id = Column('url_id', Integer, index=True)
+    user_id = Column('user_id', Integer, ForeignKey('user.id'))
+    tag_id = Column('tag_id', Integer, ForeignKey('tag.id'))
+    url_id = Column('url_id', Integer, ForeignKey('url.id'))
+
+    urls = relationship("Url", backref="urls")
 

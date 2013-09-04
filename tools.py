@@ -18,14 +18,12 @@ from earth.category import Category
 from earth.url import Url
 from earth.relation_url_category import UrlCategoryRelation
 
-CATEGORIES = {}
 URLS = []
 
 def add_category():
     categories = ['新闻', '搜索', '社区', '视频', '购物', '邮箱']
     for cat in categories:
-        c = Category.add(name=cat)
-        CATEGORIES[cat] = c
+        Category.add(name=cat)
 
 def add_url():
     urls = [
@@ -37,10 +35,15 @@ def add_url():
         ('Google', 'http://www.google.com', ['搜索']),
     ]
     for name, url, cates in urls:
-        u = Url.add(name=name, url=url, md5=hashlib.md5(url).hexdigest())
+        u = Url.add(name=name, url=url)
         for cat in cates:
-            cat = CATEGORIES.get(cat)
-            UrlCategoryRelation.add(url_id=u.id, category_id=cat.id)
+            cat = Category.get_by_name(cat)
+            #UrlCategoryRelation.add(url_id=u.id, category_id=cat.id)
+            #UrlCategoryRelation(url_id=u.id, category_id=cat.id)
+            print u.categories
+            u.categories.append(cat)
+        print u.tags
+        print u.categories
 
 def fillup():
     add_category()

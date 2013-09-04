@@ -11,7 +11,7 @@ from sqlalchemy.orm import relationship
 
 from nutrition.database import T
 
-class UrlCategoryRelation(T):
+class RelationUrlCategory(T):
 
     __tablename__ = 'relation_url_category'
     __table_args__ = (
@@ -19,5 +19,6 @@ class UrlCategoryRelation(T):
     )
 
     id = Column('id', Integer, primary_key=True)
-    url_id = Column('url_id', Integer)
-    category_id = Column('category_id', Integer)
+    url_id = Column('url_id', Integer, index=True)
+    category_id = Column('category_id', Integer, index=True)
+

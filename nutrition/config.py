@@ -38,4 +38,5 @@ if os.environ.get('TEST_MODE'):
         'PASSWORD': '',
         'DB_NAME': 'test',
         'ECHO': False,
+        #'ECHO': True,
     }

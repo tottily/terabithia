@@ -11,6 +11,10 @@ from sqlalchemy.orm import relationship
 
 from nutrition.database import T
 
+from earth.category import Category
+from earth.relation_url_tag import UserUrlTagRelation
+from earth.relation_url_category import RelationUrlCategory
+
 class Url(T):
 
     __tablename__ = 'url'
@@ -40,3 +44,11 @@ class Url(T):
     def get_by_url(cls, url):
         md5 = hashlib.md5(url).hexdigest()
         return cls.query.filter(cls.md5 == md5).first()
+
+    def _relations(self, limit):
+        return RelationUrlCategory.query.filter(RelationUrlCategory.url_id == self.id).limit(limit)
+
+    def categories(self, limit=10):
+        relations = self._relations(limit)
+        ids = [relation.category_id for relation in relations]
+        return Category.get_multi(ids)

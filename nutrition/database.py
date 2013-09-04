@@ -25,7 +25,7 @@ def import_db_models():
     from earth.user import User
     from earth.tag import Tag
     from earth.category import Category
-    from earth.relation_url_category import UrlCategoryRelation
+    from earth.relation_url_category import RelationUrlCategory
     from earth.relation_url_tag import UserUrlTagRelation
 
 def establish_database(force=False):
@@ -85,5 +85,5 @@ class T(Base):
         return cls.query.get(id)
 
     @classmethod
-    def gets(cls, ids):
+    def get_multi(cls, ids):
         return [cls.get(id) for id in ids]
