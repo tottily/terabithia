@@ -6,8 +6,8 @@ from framework import TestCase
 
 from nutrition.database import talk
 
-from earth.category import Category
 from earth.url import Url
+from earth.category import Category
 from earth.relation_url_category import RelationUrlCategory
 
 class TestRelationUrlCategoryCase(TestCase):

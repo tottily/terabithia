@@ -16,7 +16,7 @@ establish_database(force=True)
 
 from earth.category import Category
 from earth.url import Url
-from earth.relation_url_category import UrlCategoryRelation
+from earth.relation_url_category import RelationUrlCategory
 
 URLS = []
 
@@ -39,10 +39,10 @@ def add_url():
         for cat in cates:
             cat = Category.get_by_name(cat)
             #UrlCategoryRelation.add(url_id=u.id, category_id=cat.id)
-            #UrlCategoryRelation(url_id=u.id, category_id=cat.id)
-            print u.categories
-            u.categories.append(cat)
-        print u.tags
+            RelationUrlCategory.add(url_id=u.id, category_id=cat.id)
+            #print u.categories
+            #u.categories.append(cat)
+        #print u.tags
         print u.categories
 
 def fillup():

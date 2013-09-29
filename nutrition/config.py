@@ -24,7 +24,7 @@ DB_CONFIG = {
     'USER': 'root',
     'PASSWORD': '',
     'DB_NAME': 'terabithia',
-    'ECHO': False,
+    'ECHO': True,
 }
 
 MC_CONFIG = {}

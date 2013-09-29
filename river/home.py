@@ -9,7 +9,7 @@ from earth import gets_url_by_category
 from earth.url import Url
 from earth.consts import DEFAULT_CATEGORIES
 from earth.category import Category
-from earth.relation_url_category import UrlCategoryRelation
+from earth.relation_url_category import RelationUrlCategory
 
 home = Blueprint('home', __name__)
 
